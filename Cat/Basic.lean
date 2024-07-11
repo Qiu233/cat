@@ -251,7 +251,7 @@ class Monad [MonoidalCategory C] (M : C) where
   id_right : 𝟙 M ⨂ η ≫ μ = (MonoidalCategory.ρ M).toMorphism
 
 @[simp]
-instance functor_option : Functor Type Type where
+instance functor_option : Functor (Type u) (Type u) where
   omap := Option
   fmap := Option.map
   map_id X := by
@@ -261,7 +261,7 @@ instance functor_option : Functor Type Type where
     cases x <;> simp
   map_comp {X Y Z} f g := by simp [CatComp.comp]
 
-instance : Monad (C := Type ⥤ Type) functor_option where
+instance : Monad (C := Type u ⥤ Type u) functor_option where
   η := by
     simp [functor_option]
     refine ⟨?_, ?_⟩
